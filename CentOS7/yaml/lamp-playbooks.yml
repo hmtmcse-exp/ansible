@@ -22,7 +22,7 @@
         - php-mysql
         - wget
 
-  - name: Ensure MySQL is running (and enable it at boot)
+  - name: Ensure MariaDB is running (and enable it at boot)
     service: name=mariadb state=started enabled=yes
 
 
@@ -30,5 +30,5 @@
     - name: restart apache
       service: name=httpd state=restarted
 
-    - name: restart mariadb
+    - name: restart MariaDB
       service: name=mariadb state=restarted
