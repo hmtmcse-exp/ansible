@@ -1,9 +1,9 @@
 echo -e "\n##################################################"
 IS_INSTALL=`rpm -qa  wget`;
 if [ -z "$IS_INSTALL" ]; then
-    echo -e "Installing wget /n/n"
+    echo -e "Installing wget"
     yum -y install wget
-    echo -e "/n/n Installing End wget /n/n"
+    echo -e "/n/n Installing End wget"
 else
     echo "Already Installed wget"
 fi
@@ -11,9 +11,9 @@ fi
 echo -e "\n##################################################"
 IS_INSTALL=`rpm -qa  git`;
 if [ -z "$IS_INSTALL" ]; then
-    echo -e "Installing git /n/n"
+    echo -e "Installing git"
     yum -y install wget
-    echo -e "/n/n Installing End git /n/n"
+    echo -e "/n/n Installing End git"
 else
     echo "Already Installed git"
 fi
@@ -22,9 +22,9 @@ fi
 echo -e "\n##################################################"
 IS_INSTALL=`rpm -qa  net-tools`;
 if [ -z "$IS_INSTALL" ]; then
-    echo -e "Installing net-tools /n/n"
+    echo -e "Installing net-tools"
     yum -y install wget
-    echo -e "/n/n Installing End net-tools /n/n"
+    echo -e "/n/n Installing End net-tools"
 else
     echo "Already Installed net-tools"
 fi
@@ -33,9 +33,9 @@ fi
 echo -e "\n##################################################"
 IS_INSTALL=`rpm -qa  vim`;
 if [ -z "$IS_INSTALL" ]; then
-    echo -e "Installing vim /n/n"
+    echo -e "Installing vim"
     yum -y install wget
-    echo -e "/n/n Installing End vim /n/n"
+    echo -e "/n/n Installing End vim"
 else
     echo "Already Installed vim"
 fi
