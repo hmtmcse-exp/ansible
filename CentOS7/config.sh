@@ -39,3 +39,24 @@ if [ -z "$IS_INSTALL" ]; then
 else
     echo "Already Installed vim"
 fi
+
+echo -e "\n##################################################"
+IS_INSTALL=`rpm -qa epel-release`;
+if [ -z "$IS_INSTALL" ]; then
+    echo -e "Installing epel-release"
+    yum -y install epel-release
+    echo -e "Installing End epel-release"
+else
+    echo "Already Installed epel-release"
+fi
+
+
+echo -e "\n##################################################"
+IS_INSTALL=`rpm -qa ansible`;
+if [ -z "$IS_INSTALL" ]; then
+    echo -e "Installing ansible"
+    yum -y install ansible
+    echo -e "Installing End ansible"
+else
+    echo "Already Installed ansible"
+fi
