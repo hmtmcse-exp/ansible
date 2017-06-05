@@ -1,16 +1,17 @@
-  hosts: webservers
+- hosts: webservers
   tasks:
-    name: Installing Latest version of Apache
-    yum: pkg=httpd state=latest
+  - name: Installing Latest version of Apache
+    yum: name=httpd state=latest
 
-    name: Copying the demo file
+  - name: Copying the demo file
     template: src=../examples/index.html dest=/var/www/html owner=apache group=apache mode=0644
 
-    name: (Enable it on System Boot)
-    service: name=httpd enabled=yes
     notify:
-      start apache
+    - restart apache
+
+  - name: ensure apache is running (and enable it at boot)
+    service: name=httpd state=started enabled=yes
 
   handlers:
-    name: start apache
-    service: name=httpd state=started
+    - name: restart apache
+      service: name=httpd state=restarted
