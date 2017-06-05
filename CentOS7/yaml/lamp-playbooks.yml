@@ -1,0 +1,34 @@
+- hosts: webservers
+  tasks:
+  - name: Installing Latest version of Apache
+    yum: name=httpd state=latest
+
+  - name: Copying the Index file
+    template: src=../examples/index.html dest=/var/www/html owner=apache group=apache mode=0644
+
+  - name: Copying info.php file
+    template: src=../examples/info.php dest=/var/www/html owner=apache group=apache mode=0644
+
+    notify:
+    - restart apache
+
+  - name: ensure apache is running (and enable it at boot)
+    service: name=httpd state=started enabled=yes
+
+  - name: Installed Packages
+    yum: pkg={{ item }} state=installed
+    with_items:
+        - mariadb-server
+        - mariadb
+        - php
+        - php-mysql
+
+  - name: Ensure MySQL is running (and enable it at boot)
+    service: name=mariadb state=started enabled=yes
+
+    notify:
+    - restart mariadb
+
+  handlers:
+    - name: restart apache
+      service: name=httpd state=restarted
