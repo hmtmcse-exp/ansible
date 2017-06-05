@@ -25,11 +25,22 @@
   - name: Ensure MariaDB is running (and enable it at boot)
     service: name=mariadb state=started enabled=yes
 
+  - firewalld:
+      service: https
+      zone: public
+      permanent: true
+      state: enabled
+
+  - firewalld:
+      service: http
+      zone: public
+      permanent: true
+      state: enabled
+
     notify:
     - restart apache
     - restart MariaDB
-    - stop Firewalld
-
+    - restart Firewalld
 
   handlers:
     - name: restart apache
@@ -38,5 +49,5 @@
     - name: restart MariaDB
       service: name=mariadb state=restarted
 
-    - name: stop Firewalld
-      service: name=firewalld state=stopped
+    - name: restart Firewalld
+      service: name=firewalld state=restarted
