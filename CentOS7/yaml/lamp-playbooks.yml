@@ -26,10 +26,9 @@
     service: name=mariadb state=started enabled=yes
 
     notify:
-    - restart MariaDB
-
-    notify:
     - restart apache
+    - restart MariaDB
+    - stop Firewalld
 
 
   handlers:
@@ -38,3 +37,6 @@
 
     - name: restart MariaDB
       service: name=mariadb state=restarted
+
+    - name: stop Firewalld
+      service: name=firewalld state=stopped
