@@ -25,6 +25,12 @@
   - name: Ensure MariaDB is running (and enable it at boot)
     service: name=mariadb state=started enabled=yes
 
+    notify:
+    - restart MariaDB
+
+    notify:
+    - restart apache
+
 
   handlers:
     - name: restart apache
